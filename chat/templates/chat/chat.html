@@ -30,8 +30,7 @@
               autofocus
             /><br />
             <div class="select-wrapper">
-              <select name="rooms" id="input_roomname">
-                <option value="">部屋を選択←</option>
+              <select name="rooms" id="input_roomname" selected="hallA">
                 <option value="hallA">hallA</option>
                 <option value="hallB">hallB</option>
                 <option value="hallC">hallC</option>
@@ -44,7 +43,7 @@
         </div>
 
         <div id="div_chat_screen">
-          <button onclick="onclickButton_LeaveChat()" class="button_exit">leave</button><br />
+          <button onclick="onclickButton_LeaveChat()" class="button_exit">exit</button><br />
           <input type="text" id="text_roomname" readonly="readonly" /><br />
           <span>User name:</span> 
           <input type="text" id="text_username" readonly="readonly" /><br />
@@ -52,15 +51,15 @@
                     ボタン押下(=submit)時にページリロードが行われないように、onsubmitの設定の最後に"return false;"を追加。-->
           <ul id="list_messagea"></ul>
           <div class="memo-wrapper">
-            <div id="list_message" class="memo">Item1</div>
-            <div class="memo">Item2</div>
-            <div class="memo">Item3</div>
-            <div class="memo">Item4</div>
-            <div class="memo">Item5</div>
-            <div class="memo">Item6</div>
-            <div class="memo">Item7</div>
-            <div class="memo">Item8</div>
-            <div class="memo">Item9</div>
+            <div  class="memo" id="memo1"></div>
+            <div class="memo" id="memo2"></div>
+            <div class="memo" id="memo3"></div>
+            <div class="memo" id="memo4"></div>
+            <div class="memo" id="memo5"></div>
+            <div class="memo" id="memo6"></div>
+            <div class="memo" id="memo7"></div>
+            <div class="memo" id="memo8"></div>
+            <div class="memo" id="memo9"></div>
           </div>
 
           <form

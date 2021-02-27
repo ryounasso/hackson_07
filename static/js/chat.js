@@ -3,11 +3,24 @@ const g_elementDivChatScreen = document.getElementById( "div_chat_screen" );
 const g_elementInputUserName = document.getElementById( "input_username" );
 const g_elementInputRoomName = document.getElementById( "input_roomname" );
 
+//memo定数定義
+const memo1 = document.getElementById("memo1")
+const memo2 = document.getElementById("memo2")
+const memo3 = document.getElementById("memo3")
+const memo4 = document.getElementById("memo4")
+const memo5 = document.getElementById("memo5")
+const memo6 = document.getElementById("memo6")
+const memo7 = document.getElementById("memo7")
+const memo8 = document.getElementById("memo8")
+const memo9 = document.getElementById("memo9")
+
 const g_elementTextUserName = document.getElementById( "text_username" );
 const g_elementTextRoomName = document.getElementById( "text_roomname" );
 
 const g_elementInputMessage = document.getElementById( "input_message" );
 let g_elementListMessage = document.getElementById( "list_message" );
+
+
 
 // WebSocketオブジェクト
 let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
@@ -109,8 +122,16 @@ function onsubmitButton_sendImage(){
     imageBase64 = "";
 }
 
+/** 重複チェック用配列 */
+let randoms = [];
+/** 最小値と最大値 */
+let min = 1, max = 9;
+ 
+/** min以上max以下の整数値の乱数を返す */
+function intRandom(min, max){
+  return Math.floor( Math.random() * (max - min + 1)) + min;
+}
 let countMember = 0;
-
 // WebSocketからメッセージ受信時の処理
 g_socket.onmessage = ( event ) =>
 {
@@ -125,17 +146,49 @@ g_socket.onmessage = ( event ) =>
 
     // メッセージの整形
     //let strMessage = data["message"];
-    let strMessage = data["datetime"] + " - [" + data["username"] + "] " + data["message"];
+    let strMessage = " user " + data["username"] + data["message"];
+    let flag = data["message"];
+//     let strMessage = data["datetime"] + " - [" + data["username"] + "] " + data["message"];
     // let flag = data["message"];
     countMember = data["member"];
     console.log(countMember);
 
     // 拡散されたメッセージをメッセージリストに追加
+<<<<<<< HEAD
     let elementLi = document.createElement( "div" );
     elementLi.textContent = strMessage;
     if (data["message"] != 'null'){
         // g_elementListMessage.prepend( elementLi ); // リストの一番上に追加
         g_elementListMessage.innerHTML =  elementLi.textContent; // リストの一番上に追加
+=======
+    let elementLi = document.createElement( "p" );
+    let tmp =[];
+
+    /** 重複チェックしながら乱数作成 */
+    elementLi.textContent = strMessage;
+    if (flag != 'null'){
+        let c
+        for(i = min; i <= max; i++){
+            if (c===false){
+                if(randoms.length===9){
+                    randoms.splice(0)
+                }
+                break
+            }
+            while(true){
+               tmp = intRandom(min, max);
+              if(!randoms.includes(tmp)){
+                let memo =eval("memo"+tmp)
+                console.log(memo)
+                randoms.push(tmp);
+                memo.innerHTML =  elementLi.textContent; // リストの一番上に追加
+                c=false
+                break;
+            }
+        }
+    }
+        //g_elementListMessage.append( elementLi );    // リストの一番下に追加
+>>>>>>> 490d5f8885e1cc2bf07fd622f1e1c45da6f08544
     }
     if(data["image"] != 'null'){
         // 受信した画像をimg要素としてmessageに組み込む

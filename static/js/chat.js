@@ -168,9 +168,8 @@ g_socket.onmessage = ( event ) =>
               if(!randoms.includes(tmp)){
                 let memo =eval("memo"+tmp)
                 console.log(memo)
-
                 randoms.push(tmp);
-                memo.prepend( elementLi ); // リストの一番上に追加
+                memo.innerHTML =  elementLi.textContent; // リストの一番上に追加
                 c=false
                 break;
             }

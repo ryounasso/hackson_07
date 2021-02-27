@@ -154,13 +154,6 @@ g_socket.onmessage = ( event ) =>
     console.log(countMember);
 
     // 拡散されたメッセージをメッセージリストに追加
-<<<<<<< HEAD
-    let elementLi = document.createElement( "div" );
-    elementLi.textContent = strMessage;
-    if (data["message"] != 'null'){
-        // g_elementListMessage.prepend( elementLi ); // リストの一番上に追加
-        g_elementListMessage.innerHTML =  elementLi.textContent; // リストの一番上に追加
-=======
     let elementLi = document.createElement( "p" );
     let tmp =[];
 
@@ -188,7 +181,6 @@ g_socket.onmessage = ( event ) =>
         }
     }
         //g_elementListMessage.append( elementLi );    // リストの一番下に追加
->>>>>>> 490d5f8885e1cc2bf07fd622f1e1c45da6f08544
     }
     if(data["image"] != 'null'){
         // 受信した画像をimg要素としてmessageに組み込む

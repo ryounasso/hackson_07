@@ -68,16 +68,10 @@ ul {
   border: none;
   background-color: #f86444;
   text-align: center;
-<<<<<<< HEAD
-  /* margin: 0 auto; */
-  padding: 10px;
-  color: #f1f5f9;
-=======
   margin: 0 auto;
   padding: 4px;
   color: #fff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
->>>>>>> 490d5f8885e1cc2bf07fd622f1e1c45da6f08544
 }
 #text_roomname {
   display: block;

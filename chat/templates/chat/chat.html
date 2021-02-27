@@ -14,10 +14,12 @@
     </form>
 
     <ul id="list_message"></ul>
+    <input type="file" id="inputImage">
 
     <script>
         const g_elementInputMessge = document.getElementById("input_message");
         const g_elementListMessage = document.getElementById("list_message");
+        const imageInput = document.getElementById("inputImage");
 
         //WebSocketオブジェクト
         let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
@@ -38,6 +40,27 @@
             g_elementInputMessge.value = "";
         }
 
+        const imageInput = document.getElementById("inputImage");
+
+        imageInput.addEventListener('change', (e) => {
+            const imageFile = e.target.files[0];
+            const imageURL = window.URL.createObjectURL(imageFile);
+
+            const imageElement = new Image();
+            imageElement.src = imageURL;
+
+            imageElement.onload = function() {
+                const canvasElement = document.createElement('canvas');
+                canvasElement.width = imageElement.width;
+                canvasElement.height = imageElement.height;
+                const canvasContext = canvasElement.getContext('2d');
+                canvasContext.drawImage(imageElement, 0, 0);
+
+                // canvas要素をbase64形式に変換
+                imageBase64 = createElement.toDataURL("image/png");
+            };
+        });
+
         //WebSocketからメッセージ受信時の処理
         g_socket.onmessage = (event) => {
             //テキストデータをJSONデータにデコード
@@ -51,6 +74,10 @@
             elementLi.textContent = message;
             g_elementListMessage.prepend( elementLi ); //リストの一番上に追加
             // g_elementListMessge.append( elementLi ); //リストの一番下に追加
+
+            let messageImage = document.createElement('img');
+            messageImage.setAttribute('src', data["image"]);
+            message.append(messageImage);
         };
 
         // WebSocketクローズ時の処理

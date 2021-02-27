@@ -81,6 +81,10 @@
                     Message : <input type="text" id="input_message" autocomplete="off" autofocus /><input type="submit" value="Send" />
                 </form>
 
+                <form action="" onsubmit="onsubmitButton_sendImage(); return false;">
+                    Image : <input type="file" id="input_image" /><input type="submit" value="sendImage" />
+                </form>
+
                 <ul id="list_message"></ul>
 
             </div>
@@ -102,6 +106,7 @@
         // WebSocketオブジェクト
         let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
         const g_socket = new WebSocket( ws_scheme + "://" + window.location.host + "/ws/chat/" );
+        const g_socket_image = new WebSocket( ws_scheme + "://" + window.location.host + "/ws/chat/" );
 
         // 「Join」ボタンを押すと呼ばれる関数
         function onsubmitButton_JoinChat()
@@ -146,6 +151,31 @@
             g_elementDivJoinScreen.style.display = "flex";  // 参加画面の表示
         }
 
+        // 画像をBase64に変換
+        let imageBase64 = "";
+
+        const imageInput = document.getElementById("input_image");
+
+        imageInput.addEventListener('change', (e) => {
+            // 画像ファイルを取得し、画像データ(URL)を変数に代入
+            const imageFile = e.target.files[0];
+            const imageURL = window.URL.createObjectURL(imageFile);
+            // img要素を作成し、src属性に画像のURLを指定
+            const imageElement = new Image();
+            imageElement.src = imageURL;
+
+            imageElement.onload = function() {
+                // canvas要素を作成し、img要素を描画
+                const canvasElement = document.createElement('canvas');
+                canvasElement.width = imageElement.width;
+                canvasElement.height = imageElement.height;
+                const canvasContext = canvasElement.getContext('2d');
+                canvasContext.drawImage(imageElement, 0, 0);
+                // canvas要素をbase64形式に変換
+                imageBase64 = canvasElement.toDataURL("image/png");
+            };
+        });
+
         // 「Send」ボタンを押したときの処理
         function onsubmitButton_Send()
         {
@@ -162,6 +192,34 @@
             // 送信用テキストHTML要素の中身のクリア
             g_elementInputMessage.value = "";
         }
+
+        function onsubmitButton_sendImage(){
+            if( !imageBase64 ){
+                return;
+            }
+
+            g_socket_image.send( JSON.stringify({ "image": imageBase64 }) );
+            imageInput.value = "";
+            imageBase64 = "";
+        }
+
+        // WebSocketからメッセージ受信時の処理
+        g_socket_image.onmessage = ( event ) =>
+        {
+            // 自身がまだ参加していないときは、無視。
+            if( !g_elementTextUserName.value )
+            {
+                return;
+            }
+
+            // テキストデータをJSONデータにデコード
+            let data = JSON.parse( event.data );
+
+            // 受信した画像をimg要素としてmessageに組み込む
+            const messageImage = document.createElement('img');
+            messageImage.setAttribute('src', data['image']);
+            g_elementListMessage.append(messageImage);
+        };
 
         // WebSocketからメッセージ受信時の処理
         g_socket.onmessage = ( event ) =>

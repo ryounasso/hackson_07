@@ -7,7 +7,7 @@ const g_elementTextUserName = document.getElementById( "text_username" );
 const g_elementTextRoomName = document.getElementById( "text_roomname" );
 
 const g_elementInputMessage = document.getElementById( "input_message" );
-const g_elementListMessage = document.getElementById( "list_message" );
+let g_elementListMessage = document.getElementById( "list_message" );
 
 // WebSocketオブジェクト
 let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
@@ -131,11 +131,11 @@ g_socket.onmessage = ( event ) =>
     console.log(countMember);
 
     // 拡散されたメッセージをメッセージリストに追加
-    let elementLi = document.createElement( "li" );
+    let elementLi = document.createElement( "div" );
     elementLi.textContent = strMessage;
     if (data["message"] != 'null'){
-        g_elementListMessage.prepend( elementLi ); // リストの一番上に追加
-        //g_elementListMessage.append( elementLi );    // リストの一番下に追加
+        // g_elementListMessage.prepend( elementLi ); // リストの一番上に追加
+        g_elementListMessage.innerHTML =  elementLi.textContent; // リストの一番上に追加
     }
     if(data["image"] != 'null'){
         // 受信した画像をimg要素としてmessageに組み込む

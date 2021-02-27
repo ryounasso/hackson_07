@@ -68,7 +68,9 @@ ul {
   border: none;
   background-color: #f86444;
   text-align: center;
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  padding: 10px;
+  color: #f1f5f9;
 }
 #text_roomname {
   display: block;

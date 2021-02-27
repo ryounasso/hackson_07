@@ -56,14 +56,25 @@ class ChatConsumer(AsyncWebsocketConsumer):
             await self.leave_chat()
         # メッセージ受信時の処理
         else:
-            # メッセージの取り出し
-            message = text_data_json['message']
-            data = {
-                'type': 'chat_message',  # 受信処理関数名
-                'message': message,  # メッセージ
-                'username': self.strUserName,  # ユーザー名
-                'datetime': datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'),  # 現在時刻
-            }
+            if text_data_json['message'] != 'null':
+                # メッセージの取り出し
+                message = text_data_json['message']
+                data = {
+                    'type': 'chat_message',  # 受信処理関数名
+                    'message': message,  # メッセージ
+                    'username': self.strUserName,  # ユーザー名
+                    'datetime': datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'),  # 現在時刻
+                    'image': 'null',
+                }
+            else:
+                image = text_data_json['image']
+                data = {
+                    'type': 'chat_message',
+                    'message': 'null',
+                    'username': self.strUserName,
+                    'datetime': datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'),  # 現在時刻
+                    'image': image,
+                }
             await self.channel_layer.group_send(self.strGroupName, data)
 
     # 拡散メッセージ受信時の処理
@@ -73,6 +84,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             'message': data['message'],
             'username': data['username'],
             'datetime': data['datetime'],
+            'image': data['image'],
         }
 
         # WebSocketにメッセージを送信
@@ -101,6 +113,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             'message': strMessage,  # メッセージ
             'username': USERNAME_SYSTEM,  # ユーザー名
             'datetime': datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'),  # 現在時刻
+            'image': 'null',
         }
         await self.channel_layer.group_send(self.strGroupName, data)
 

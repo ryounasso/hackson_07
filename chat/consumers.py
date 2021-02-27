@@ -12,6 +12,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     # ルーム管理
     rooms = None
+
+    # ユーザー数カウント
+    numMember = 0
     # コンストラクタ
 
     def __init__(self, *args, **kwargs):
@@ -65,7 +68,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'username': self.strUserName,  # ユーザー名
                     'datetime': datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'),  # 現在時刻
                     'image': 'null',
-                    'member': room['participants_count'],
+                    'member': numMember,
                 }
             else:
                 image = text_data_json['image']
@@ -75,7 +78,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'username': self.strUserName,
                     'datetime': datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'),  # 現在時刻
                     'image': image,
-                    'member': room['participants_count'],
+                    'member': numMember,
                 }
             await self.channel_layer.group_send(self.strGroupName, data)
 
@@ -101,7 +104,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         # 参加者数の更新
         room = ChatConsumer.rooms.get(self.strGroupName)
-        numMember = 0
+        # numMember = 0
         if(None == room):
             # ルーム管理にルーム追加
             ChatConsumer.rooms[self.strGroupName] = {'participants_count': 1}
@@ -132,7 +135,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         # グループから離脱
         await self.channel_layer.group_discard(self.strGroupName, self.channel_name)
 
-        numMember = 0
+        # numMember = 0
 
         # 参加者数の更新
         ChatConsumer.rooms[self.strGroupName]['participants_count'] -= 1

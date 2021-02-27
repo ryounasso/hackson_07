@@ -86,12 +86,12 @@
                 Room Name : <input type="text" id="text_roomname" readonly="readonly"><br />
                 <!-- エンターキーによるボタン押下を行うために、<button>ではなく<form>と<input type="submit">を使用。
                     ボタン押下(=submit)時にページリロードが行われないように、onsubmitの設定の最後に"return false;"を追加。-->
-                    <ul id="list_message"></ul>
-                <form action="" onsubmit="onsubmitButton_Send(); return false;">
+                <ul id="list_message"></ul>
+                <form class="input-form" action="" onsubmit="onsubmitButton_Send(); return false;">
                     Message : <input type="text" id="input_message" autocomplete="off" autofocus /><input type="submit" value="Send" />
                 </form>
 
-                <form action="" onsubmit="onsubmitButton_sendImage(); return false;">
+                <form class="input-form" action="" onsubmit="onsubmitButton_sendImage(); return false;">
                     Image : <input type="file" id="input_image" /><input type="submit" value="sendImage" />
                 </form>
 

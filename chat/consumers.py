@@ -93,7 +93,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         else:
             room['participants_count']+=1
         #システムメッセージの作成
-        strMessage=""+self.strUserName+'"joined.there are'+str(ChatConsumer.rooms[self.strGroupName]['participants_count'])+'participants'
+        strMessage=""+self.strUserName+' joined.there are '+str(ChatConsumer.rooms[self.strGroupName]['participants_count'])+' participants'
         # グループ内の全コンシューマーにメッセージ拡散送信（受信関数を'type'で指定）
         data = {
             'type': 'chat_message', # 受信処理関数名

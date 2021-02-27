@@ -125,6 +125,8 @@ g_socket.onmessage = ( event ) =>
     //let strMessage = data["message"];
     let strMessage = data["datetime"] + " - [" + data["username"] + "] " + data["message"];
     let flag = data["message"];
+    let countMember = data["member"];
+    console.log(countMember);
 
     // 拡散されたメッセージをメッセージリストに追加
     let elementLi = document.createElement( "li" );

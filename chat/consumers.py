@@ -65,6 +65,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'username': self.strUserName,  # ユーザー名
                     'datetime': datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'),  # 現在時刻
                     'image': 'null',
+                    'member': room['participants_count'],
                 }
             else:
                 image = text_data_json['image']
@@ -74,6 +75,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'username': self.strUserName,
                     'datetime': datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'),  # 現在時刻
                     'image': image,
+                    'member': room['participants_count'],
                 }
             await self.channel_layer.group_send(self.strGroupName, data)
 
@@ -85,6 +87,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             'username': data['username'],
             'datetime': data['datetime'],
             'image': data['image'],
+            'member': data['member'],
         }
 
         # WebSocketにメッセージを送信
@@ -98,11 +101,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         # 参加者数の更新
         room = ChatConsumer.rooms.get(self.strGroupName)
+        numMember = 0
         if(None == room):
             # ルーム管理にルーム追加
             ChatConsumer.rooms[self.strGroupName] = {'participants_count': 1}
         else:
             room['participants_count'] += 1
+            numMember = room['participants_count']
         # システムメッセージの作成
         strMessage = ""+self.strUserName+' joined.there are ' + \
             str(ChatConsumer.rooms[self.strGroupName]
@@ -114,6 +119,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             'username': USERNAME_SYSTEM,  # ユーザー名
             'datetime': datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'),  # 現在時刻
             'image': 'null',
+            'member': numMember,
         }
         await self.channel_layer.group_send(self.strGroupName, data)
 
@@ -126,8 +132,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
         # グループから離脱
         await self.channel_layer.group_discard(self.strGroupName, self.channel_name)
 
+        numMember = 0
+
         # 参加者数の更新
         ChatConsumer.rooms[self.strGroupName]['participants_count'] -= 1
+        numMember = ChatConsumer.rooms[self.strGroupName]['participants_count']
         # システムメッセージの作成
         strMessage = '"' + self.strUserName + '" left. there are ' + \
             str(ChatConsumer.rooms[self.strGroupName]
@@ -138,6 +147,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
             'message': strMessage,  # メッセージ
             'username': USERNAME_SYSTEM,  # ユーザー名
             'datetime': datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'),  # 現在時刻
+            'image': 'null',
+            'member': numMember,
         }
         await self.channel_layer.group_send(self.strGroupName, data)
 

@@ -7,7 +7,7 @@ body {
   width: 700px;
   margin: 0 auto;
 }
-.title{
+.title {
   text-align: center;
   margin: 16px 0;
 }
@@ -25,26 +25,25 @@ body {
   border: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-​
-.button:focus {
+​ .button:focus {
   outline: none;
 }
 .button1 {
   background-color: #5eaff9;
 }
-.button1:hover{
+.button1:hover {
   opacity: 0.8;
 }
 .button2 {
   background-color: #f86444;
 }
-.button2:hover{
+.button2:hover {
   opacity: 0.8;
 }
 .button3 {
   background-color: #7ee77e;
 }
-.button3:hover{
+.button3:hover {
   opacity: 0.8;
 }
 .memo-wrapper {
@@ -90,10 +89,17 @@ body {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin-left: 4px;
 }
-​
-.form-button:focus {
+​ .form-button:focus {
   outline: none;
 }
 .form-button:active {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.input-form {
+  text-align: center;
+}
+
+#list_message {
+  text-align: center;
 }

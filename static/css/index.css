@@ -4,7 +4,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-#div_container{
+#div_container {
   width: 700px;
   margin: 0 auto;
 }
@@ -14,23 +14,23 @@ body {
 }
 
 /* ログイン画面 */
-.user{
+.user {
   margin-bottom: 8px;
 }
-#input_username{
+#input_username {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background: #f1f5f9;
   padding: 10px;
 }
-#input_roomname{
+#input_roomname {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.select-wrapper{
+.select-wrapper {
   margin-top: 16px;
   display: flex;
   justify-content: center;
 }
-#input_roomname{
+#input_roomname {
   display: block;
   /* height: 40px; */
   text-align: center;
@@ -39,7 +39,7 @@ body {
   padding: 0 4px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-#in-button{
+#in-button {
   display: block;
   border-radius: 16px;
   border: none;
@@ -51,16 +51,13 @@ body {
   background-color: #fb923c;
 }
 
-
-
-
 /* チャット画面 */
 .button-wrapper {
   display: flex;
   justify-content: space-around;
   margin-bottom: 46px;
 }
-.button_exit{
+.button_exit {
   border-radius: 8px;
   border: none;
   background-color: #f86444;
@@ -69,6 +66,14 @@ body {
   padding: 4px;
   color: #fff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.user-wrapper {
+  mix-blend-mode: multiply;
+  margin-bottom: 8px;
+}
+.user-image {
+  width: 24px;
+  height: 24px;
 }
 #text_roomname {
   display: block;
@@ -113,9 +118,17 @@ body {
 }
 .memo {
   background-color: #f1f5f9;
-  border-radius: 16px;
-  padding: 10px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+font-family: 'Stick', sans-serif;
+  padding: 0 1em;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(#ccc 1px, transparent 1px) #fffbf2;
+  background-size: auto 2em;
+  line-height: 2em;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  overflow: hidden;
 }
 .form-wrapper {
   margin: 0 auto;
@@ -136,6 +149,10 @@ body {
 #input_message:focus {
   outline: none;
 }
+img {
+  width: 100px;
+  height: 100px;
+}
 .form-button {
   display: block;
   width: 100px;
@@ -147,7 +164,7 @@ body {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin-left: 4px;
 }
-.form-button2{
+.form-button2 {
   display: block;
   width: 150px;
   height: 40px;

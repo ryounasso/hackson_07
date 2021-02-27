@@ -93,7 +93,7 @@ function onsubmitButton_Send()
     }
 
     // WebSocketを通したメッセージの送信
-    g_socket.send( JSON.stringify( { "message": strMessage } ) );
+    g_socket.send( JSON.stringify( { "message": strMessage, "member": countMember, } ) );
 
     // 送信用テキストHTML要素の中身のクリア
     g_elementInputMessage.value = "";
@@ -104,10 +104,12 @@ function onsubmitButton_sendImage(){
         return;
     }
     let strMessage = "null";
-    g_socket.send( JSON.stringify({ "message": strMessage, "image": imageBase64 }) );
+    g_socket.send( JSON.stringify({ "message": strMessage, "image": imageBase64, "member": countMember, }) );
     imageInput.value = "";
     imageBase64 = "";
 }
+
+let countMember = 0;
 
 // WebSocketからメッセージ受信時の処理
 g_socket.onmessage = ( event ) =>
@@ -124,14 +126,14 @@ g_socket.onmessage = ( event ) =>
     // メッセージの整形
     //let strMessage = data["message"];
     let strMessage = data["datetime"] + " - [" + data["username"] + "] " + data["message"];
-    let flag = data["message"];
-    let countMember = data["member"];
+    // let flag = data["message"];
+    countMember = data["member"];
     console.log(countMember);
 
     // 拡散されたメッセージをメッセージリストに追加
     let elementLi = document.createElement( "li" );
     elementLi.textContent = strMessage;
-    if (flag != 'null'){
+    if (data["message"] != 'null'){
         g_elementListMessage.prepend( elementLi ); // リストの一番上に追加
         //g_elementListMessage.append( elementLi );    // リストの一番下に追加
     }

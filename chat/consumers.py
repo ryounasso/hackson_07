@@ -12,6 +12,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     # ルーム管理
     rooms = None
+
     # コンストラクタ
 
     def __init__(self, *args, **kwargs):
@@ -59,23 +60,25 @@ class ChatConsumer(AsyncWebsocketConsumer):
             if text_data_json['message'] != 'null':
                 # メッセージの取り出し
                 message = text_data_json['message']
+                countMember = text_data_json['member']
                 data = {
                     'type': 'chat_message',  # 受信処理関数名
                     'message': message,  # メッセージ
                     'username': self.strUserName,  # ユーザー名
                     'datetime': datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'),  # 現在時刻
                     'image': 'null',
-                    'member': room['participants_count'],
+                    'member': countMember,
                 }
             else:
                 image = text_data_json['image']
+                countMember = text_data_json['member']
                 data = {
                     'type': 'chat_message',
                     'message': 'null',
                     'username': self.strUserName,
                     'datetime': datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'),  # 現在時刻
                     'image': image,
-                    'member': room['participants_count'],
+                    'member': countMember,
                 }
             await self.channel_layer.group_send(self.strGroupName, data)
 
@@ -105,6 +108,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if(None == room):
             # ルーム管理にルーム追加
             ChatConsumer.rooms[self.strGroupName] = {'participants_count': 1}
+            numMember += 1
         else:
             room['participants_count'] += 1
             numMember = room['participants_count']

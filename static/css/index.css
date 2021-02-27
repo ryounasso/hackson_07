@@ -1,0 +1,100 @@
+body {
+  background-color: #e5e5e5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.wrapper {
+  width: 700px;
+  margin: 0 auto;
+}
+.title{
+  text-align: center;
+  margin: 16px 0;
+  color: #f86444;
+}
+.button-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 46px;
+}
+.button {
+  display: block;
+  width: 200px;
+  height: 60px;
+  color: #fff;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+​
+.button:focus {
+  outline: none;
+}
+.button1 {
+  background-color: #5eaff9;
+}
+.button1:hover{
+  opacity: 0.8;
+}
+.button2 {
+  background-color: #f86444;
+}
+.button2:hover{
+  opacity: 0.8;
+}
+.button3 {
+  background-color: #7ee77e;
+}
+.button3:hover{
+  opacity: 0.8;
+}
+.memo-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 130px 130px 130px;
+  gap: 40px;
+  margin: 0 auto;
+}
+.memo {
+  background-color: #f1f5f9;
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.form-wrapper {
+  margin: 0 auto;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+.form {
+  display: block;
+  width: 560px;
+  height: 40px;
+  text-align: center;
+  border-radius: 16px;
+  background: #f1f5f9;
+  border: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.form:focus {
+  outline: none;
+}
+.form-button {
+  display: block;
+  width: 60px;
+  height: 40px;
+  color: #fff;
+  background-color: #fb923c;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-left: 4px;
+}
+​
+.form-button:focus {
+  outline: none;
+}
+.form-button:active {
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}

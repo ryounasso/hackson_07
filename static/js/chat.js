@@ -199,7 +199,7 @@ g_socket.onmessage = ( event ) =>
                 break;
             }
         }
-        break;
+        // break;
       }
     //   while (true) {
     //     tmp = intRandom(min, max);
@@ -221,6 +221,14 @@ g_socket.onmessage = ( event ) =>
       c = false;
   }
   //g_elementListMessage.append( elementLi );    // リストの一番下に追加
+  var imgarea = document.getElementById("audience_images");
+  imgarea.innerHTML = "";
+
+  for(let i = 0;i < countMember; i++){
+    var imgElement = document.createElement('img');
+    imgElement.src = "../../../static/images/sittingwoman-removebg-preview.png";
+    imgarea.appendChild(imgElement);
+}
 
   }
 

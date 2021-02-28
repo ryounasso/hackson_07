@@ -210,7 +210,9 @@ g_socket.onmessage = ( event ) =>
     if (data["image"] != "null") {
       // 受信した画像をimg要素としてmessageに組み込む
       const messageImage = document.createElement("img");
-      messageImage.setAttribute("src", data["image"]);  }
+      messageImage.setAttribute("src", data["image"]);
+      stamp.appendChild(messageImage);
+  }
   //g_elementListMessage.append( elementLi );    // リストの一番下に追加
 
   }

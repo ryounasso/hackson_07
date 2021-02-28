@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Stick&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="{% static 'css/index.css' %}" />
   </head>
   <body>
@@ -58,7 +57,7 @@
 
 <!--           <ul id="list_messagea"></ul> -->
           <div class="memo-wrapper">
-            <div  class="memo" id="memo1"></div>
+            <div class="memo" id="memo1"></div>
             <div class="memo" id="memo2"></div>
             <div class="memo" id="memo3"></div>
             <div class="memo" id="memo4"></div>
@@ -67,8 +66,9 @@
             <div class="memo" id="memo7"></div>
             <div class="memo" id="memo8"></div>
             <div class="memo" id="memo9"></div>
+
+            
           </div>
-          <div id="stamp"></div>
           <form
             class="input-form"
             action=""
@@ -89,24 +89,23 @@
             class="input-form"
             action=""
             onsubmit="onsubmitButton_sendImage(); return false;"
-          >
+          >            
             <div class="form-wrapper">
-             <input type="file" id="input_image" /><input
+               <input type="file" id="input_image" /><input
               type="submit"
               value="sendImage"
               class="form-button2"
-                />
+              />
+          
             </div>
           </form>
-          <!-- </form> -->
-        <!-- </div> -->
-      </div>
-
-      <div id="inmage_space">
+          <div class="audience_images" id="audience_images">
+            <!-- <img id="audience1" src="../../../static/images/sittingwoman.gif"/> -->
+          </div>
           
+
       </div>
     </div>
-
     <script type="text/javascript" src="{% static 'js/chat.js' %}"></script>
   </body>
 </html>

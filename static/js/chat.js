@@ -57,11 +57,13 @@ function onsubmitButton_JoinChat() {
 }
 
 // 「Leave Chat.」ボタンを押すと呼ばれる関数
-function onclickButton_LeaveChat() {
-  // メッセージリストのクリア
-  while (g_elementListMessage.firstChild) {
-    g_elementListMessage.removeChild(g_elementListMessage.firstChild);
-  }
+function onclickButton_LeaveChat()
+{
+    // メッセージリストのクリア
+    // while( g_elementListMessage.firstChild )
+    // {
+    //     g_elementListMessage.removeChild( g_elementListMessage.firstChild );
+    // }
 
   // ユーザー名
   g_elementTextUserName.value = "";
@@ -150,8 +152,11 @@ g_socket.onmessage = ( event ) =>
     let data = JSON.parse( event.data );
 
     // メッセージの整形
-    //let strMessage = data["message"];
-    let strMessage = " user " + data["username"] + data["message"];
+    let strMessage = data["message"];
+    if(data["username"] != "*system*"){
+        strMessage = " user " + data["username"] + '\n' + data["message"];
+    }
+    // let strMessage = " user " + data["username"] + data["message"];
     let flag = data["message"];
 //     let strMessage = data["datetime"] + " - [" + data["username"] + "] " + data["message"];
     // let flag = data["message"];
@@ -209,9 +214,11 @@ g_socket.onmessage = ( event ) =>
 
   }
 
-
-// WebSocketクローズ時の処理
-g_socket.onclose = (event) => {
-  // ウェブページを閉じたとき以外のWebSocketクローズは想定外
-  console.error("Unexpected : Chat socket closed.");
+g_socket.onclose = ( event ) =>
+{
+    // ウェブページを閉じたとき以外のWebSocketクローズは想定外
+    console.error( "Unexpected : Chat socket closed." );
 };
+
+var img = document.getElementById('image_place');
+img.src = "{% static 'img/sittingwoman.png' %}"

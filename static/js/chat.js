@@ -164,7 +164,7 @@ g_socket.onmessage = ( event ) =>
     // メッセージの整形
     let strMessage = data["message"];
     if(data["username"] != "*system*"){
-        strMessage = " user " + data["username"] + '\n' + data["message"];
+        strMessage = " user " + data["username"] + '<br>' + data["message"];
     }
     // let strMessage = " user " + data["username"] + data["message"];
     let flag = data["message"];
@@ -224,6 +224,8 @@ g_socket.onmessage = ( event ) =>
 
   }
 
+
+// WebSocketクローズ時の処理
 g_socket.onclose = ( event ) =>
 {
     // ウェブページを閉じたとき以外のWebSocketクローズは想定外

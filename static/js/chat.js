@@ -45,6 +45,22 @@ function onsubmitButton_JoinChat() {
   // ルーム名
   let strInputRoomName = g_elementInputRoomName.value;
   g_elementTextRoomName.value = strInputRoomName;
+  if(strInputRoomName==="hallA"){
+    g_elementTextRoomName.classList.add("button1")
+  }
+  if(strInputRoomName==="hallB"){
+    g_elementTextRoomName.classList.add("button2")
+  }
+  if(strInputRoomName==="hallC"){
+    g_elementTextRoomName.classList.add("button3")
+  }
+  if(strInputRoomName==="room1"){
+    g_elementTextRoomName.classList.add("button4")
+  }
+  if(strInputRoomName==="roo2"){
+    g_elementTextRoomName.classList.add("button4")
+  }
+  
 
   // サーバーに"join"を送信
   g_socket.send(

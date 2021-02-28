@@ -100,28 +100,30 @@ imageInput.addEventListener("change", (e) => {
 });
 
 // 「Send」ボタンを押したときの処理
-function onsubmitButton_Send() {
-  // 送信用テキストHTML要素からメッセージ文字列の取得
-  let strMessage = g_elementInputMessage.value;
-  if (!strMessage) {
-    return;
-  }
+function onsubmitButton_Send()
+{
+    // 送信用テキストHTML要素からメッセージ文字列の取得
+    let strMessage = g_elementInputMessage.value;
+    if( !strMessage )
+    {
+        return;
+    }
 
-  // WebSocketを通したメッセージの送信
-  g_socket.send(JSON.stringify({ message: strMessage }));
+    // WebSocketを通したメッセージの送信
+    g_socket.send( JSON.stringify( { "message": strMessage, "member": countMember, } ) );
 
-  // 送信用テキストHTML要素の中身のクリア
-  g_elementInputMessage.value = "";
+    // 送信用テキストHTML要素の中身のクリア
+    g_elementInputMessage.value = "";
 }
 
-function onsubmitButton_sendImage() {
-  if (!imageBase64) {
-    return;
-  }
-  let strMessage = "null";
-  g_socket.send(JSON.stringify({ message: strMessage, image: imageBase64 }));
-  imageInput.value = "";
-  imageBase64 = "";
+function onsubmitButton_sendImage(){
+    if( !imageBase64 ){
+        return;
+    }
+    let strMessage = "null";
+    g_socket.send( JSON.stringify({ "message": strMessage, "image": imageBase64, "member": countMember, }) );
+    imageInput.value = "";
+    imageBase64 = "";
 }
 
 /** 重複チェック用配列 */
@@ -134,34 +136,53 @@ let min = 1,
 function intRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+let countMember = 0;
 // WebSocketからメッセージ受信時の処理
-g_socket.onmessage = (event) => {
-  // 自身がまだ参加していないときは、無視。
-  if (!g_elementTextUserName.value) {
-    return;
-  }
+g_socket.onmessage = ( event ) =>
+{
+    // 自身がまだ参加していないときは、無視。
+    if( !g_elementTextUserName.value )
+    {
+        return;
+    }
 
-  // テキストデータをJSONデータにデコード
-  let data = JSON.parse(event.data);
-  // メッセージの整形
-  //let strMessage = data["message"];
-  let strMessage = " user " + data["username"] +"<br>"+
-   data["message"];
-  console.log(strMessage)
-  let flag = data["message"];
+    // テキストデータをJSONデータにデコード
+    let data = JSON.parse( event.data );
 
-  // 拡散されたメッセージをメッセージリストに追加
-  let elementLi = document.createElement("span");
-  let tmp = [];
+    // メッセージの整形
+    //let strMessage = data["message"];
+    let strMessage = " user " + data["username"] + data["message"];
+    let flag = data["message"];
+//     let strMessage = data["datetime"] + " - [" + data["username"] + "] " + data["message"];
+    // let flag = data["message"];
+    countMember = data["member"];
+    console.log(countMember);
 
-  /** 重複チェックしながら乱数作成 */
-  elementLi.textContent = strMessage;
-  if (flag != "null") {
-    let c;
-    for (i = min; i <= max; i++) {
-      if (c === false) {
-        if (randoms.length === 9) {
-          randoms.splice(0);
+    // 拡散されたメッセージをメッセージリストに追加
+    let elementLi = document.createElement( "p" );
+    let tmp =[];
+
+    /** 重複チェックしながら乱数作成 */
+    elementLi.textContent = strMessage;
+    if (flag != 'null'){
+        let c
+        for(i = min; i <= max; i++){
+            if (c===false){
+                if(randoms.length===9){
+                    randoms.splice(0)
+                }
+                break
+            }
+            while(true){
+               tmp = intRandom(min, max);
+              if(!randoms.includes(tmp)){
+                let memo =eval("memo"+tmp)
+                console.log(memo)
+                randoms.push(tmp);
+                memo.innerHTML =  elementLi.textContent; // リストの一番上に追加
+                c=false
+                break;
+            }
         }
         break;
       }
@@ -177,17 +198,17 @@ g_socket.onmessage = (event) => {
         break;
       }
     }
+    if (data["image"] != "null") {
+      // 受信した画像をimg要素としてmessageに組み込む
+      const messageImage = document.createElement("img");
+      messageImage.setAttribute("src", data["image"]);
+      memo.innerHTML(messageImage);
+      c = false;
   }
   //g_elementListMessage.append( elementLi );    // リストの一番下に追加
-  if (data["image"] != "null") {
-    // 受信した画像をimg要素としてmessageに組み込む
-    const messageImage = document.createElement("img");
-    messageImage.setAttribute("src", data["image"]);
-    memo.innerHTML(messageImage);
-    c = false;
 
   }
-};
+
 
 // WebSocketクローズ時の処理
 g_socket.onclose = (event) => {

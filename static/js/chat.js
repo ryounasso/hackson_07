@@ -14,6 +14,8 @@ const memo7 = document.getElementById("memo7");
 const memo8 = document.getElementById("memo8");
 const memo9 = document.getElementById("memo9");
 
+const stamp = document.getElementById("stamp")
+
 const g_elementTextUserName = document.getElementById("text_username");
 const g_elementTextRoomName = document.getElementById("text_roomname");
 
@@ -43,6 +45,22 @@ function onsubmitButton_JoinChat() {
   // ルーム名
   let strInputRoomName = g_elementInputRoomName.value;
   g_elementTextRoomName.value = strInputRoomName;
+  if(strInputRoomName==="hallA"){
+    g_elementTextRoomName.classList.add("button1")
+  }
+  if(strInputRoomName==="hallB"){
+    g_elementTextRoomName.classList.add("button2")
+  }
+  if(strInputRoomName==="hallC"){
+    g_elementTextRoomName.classList.add("button3")
+  }
+  if(strInputRoomName==="room1"){
+    g_elementTextRoomName.classList.add("button4")
+  }
+  if(strInputRoomName==="roo2"){
+    g_elementTextRoomName.classList.add("button4")
+  }
+  
 
   // サーバーに"join"を送信
   g_socket.send(
@@ -180,6 +198,8 @@ g_socket.onmessage = ( event ) =>
     let elementLi = document.createElement( "p" );
     let tmp =[];
 
+
+
     /** 重複チェックしながら乱数作成 */
     elementLi.textContent = strMessage;
     if (flag != 'null'){
@@ -202,7 +222,7 @@ g_socket.onmessage = ( event ) =>
                 break;
             }
         }
-        // break;
+        break;
       }
     //   while (true) {
     //     tmp = intRandom(min, max);
@@ -224,23 +244,14 @@ g_socket.onmessage = ( event ) =>
       c = false;
   }
   //g_elementListMessage.append( elementLi );    // リストの一番下に追加
-  var imgarea = document.getElementById("audience_images");
-  imgarea.innerHTML = "";
-
-  for(let i = 0;i < countMember; i++){
-    var imgElement = document.createElement('img');
-    imgElement.src = "../../../static/images/sittingwoman-removebg-preview.png";
-    imgarea.appendChild(imgElement);
-}
 
   }
 
-
-// WebSocketクローズ時の処理
 g_socket.onclose = ( event ) =>
 {
     // ウェブページを閉じたとき以外のWebSocketクローズは想定外
     console.error( "Unexpected : Chat socket closed." );
 };
 
-
+var img = document.getElementById('image_place');
+img.src = "{% static 'img/sittingwoman.png' %}"

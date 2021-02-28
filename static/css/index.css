@@ -51,7 +51,7 @@ ul {
   border: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin-left: 4px;
-  /* width: 60px; */
+  width: 80px;
   height: 40px;
   color: #fff;
   background-color: #fb923c;
@@ -66,7 +66,7 @@ ul {
 .button_exit {
   border-radius: 8px;
   border: none;
-  background-color: #f86444;
+  background-color: rgb(230, 230, 8);
   text-align: center;
   margin: 0 auto;
   padding: 4px;
@@ -89,7 +89,6 @@ ul {
   border-radius: 16px;
   border: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background-color: #5eaff9;
   text-align: center;
   margin: 0 auto;
 }
@@ -113,6 +112,9 @@ ul {
 }
 .button3:hover {
   opacity: 0.8;
+}
+.button4{
+  background-color: rgb(194, 123, 160);
 }
 .memo-wrapper {
   display: grid;

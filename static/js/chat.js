@@ -74,6 +74,16 @@ function onclickButton_LeaveChat()
   // 画面の切り替え
   g_elementDivChatScreen.style.display = "none"; // チャット画面の非表示
   g_elementDivJoinScreen.style.display = "flex"; // 参加画面の表示
+
+  memo1.innerHTML = "";
+  memo2.innerHTML = "";
+  memo3.innerHTML = "";
+  memo4.innerHTML = "";
+  memo5.innerHTML = "";
+  memo6.innerHTML = "";
+  memo7.innerHTML = "";
+  memo8.innerHTML = "";
+  memo9.innerHTML = "";
 }
 
 // 画像をBase64に変換
@@ -222,5 +232,4 @@ g_socket.onclose = ( event ) =>
     console.error( "Unexpected : Chat socket closed." );
 };
 
-var img = document.getElementById('image_place');
-img.src = "{% static 'img/sittingwoman.png' %}"
+

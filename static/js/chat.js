@@ -14,6 +14,8 @@ const memo7 = document.getElementById("memo7");
 const memo8 = document.getElementById("memo8");
 const memo9 = document.getElementById("memo9");
 
+const stamp = document.getElementById("stamp")
+
 const g_elementTextUserName = document.getElementById("text_username");
 const g_elementTextRoomName = document.getElementById("text_roomname");
 
@@ -167,6 +169,8 @@ g_socket.onmessage = ( event ) =>
     let elementLi = document.createElement( "p" );
     let tmp =[];
 
+
+
     /** 重複チェックしながら乱数作成 */
     elementLi.textContent = strMessage;
     if (flag != 'null'){
@@ -206,10 +210,7 @@ g_socket.onmessage = ( event ) =>
     if (data["image"] != "null") {
       // 受信した画像をimg要素としてmessageに組み込む
       const messageImage = document.createElement("img");
-      messageImage.setAttribute("src", data["image"]);
-      memo.innerHTML(messageImage);
-      c = false;
-  }
+      messageImage.setAttribute("src", data["image"]);  }
   //g_elementListMessage.append( elementLi );    // リストの一番下に追加
 
   }

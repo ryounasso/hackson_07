@@ -20,6 +20,8 @@ const g_elementTextRoomName = document.getElementById("text_roomname");
 const g_elementInputMessage = document.getElementById("input_message");
 const g_elementListMessage = document.getElementById("list_message");
 
+const imgListElemnt = document.getElementById("image_space");
+
 // WebSocketオブジェクト
 let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
 const g_socket = new WebSocket(
@@ -84,6 +86,7 @@ function onclickButton_LeaveChat()
   memo7.innerHTML = "";
   memo8.innerHTML = "";
   memo9.innerHTML = "";
+  imgListElemnt.innerHTML = "";
 }
 
 // 画像をBase64に変換
@@ -217,7 +220,7 @@ g_socket.onmessage = ( event ) =>
       // 受信した画像をimg要素としてmessageに組み込む
       const messageImage = document.createElement("img");
       messageImage.setAttribute("src", data["image"]);
-      memo.innerHTML(messageImage);
+      imgListElemnt.appendChild(messageImage);
       c = false;
   }
   //g_elementListMessage.append( elementLi );    // リストの一番下に追加

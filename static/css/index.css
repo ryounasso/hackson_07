@@ -73,6 +73,14 @@ ul {
   color: #fff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+.user-wrapper {
+  mix-blend-mode: multiply;
+  margin-bottom: 8px;
+}
+.user-image {
+  width: 24px;
+  height: 24px;
+}
 #text_roomname {
   display: block;
   width: 200px;
@@ -116,9 +124,17 @@ ul {
 }
 .memo {
   background-color: #f1f5f9;
-  border-radius: 16px;
-  padding: 10px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+font-family: 'Stick', sans-serif;
+  padding: 0 1em;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(#ccc 1px, transparent 1px) #fffbf2;
+  background-size: auto 2em;
+  line-height: 2em;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  overflow: hidden;
 }
 .form-wrapper {
   margin: 0 auto;
@@ -138,6 +154,10 @@ ul {
 }
 #input_message:focus {
   outline: none;
+}
+img {
+  width: 100px;
+  height: 100px;
 }
 .form-button {
   display: block;

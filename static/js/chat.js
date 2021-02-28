@@ -20,7 +20,7 @@ const g_elementTextRoomName = document.getElementById( "text_roomname" );
 const g_elementInputMessage = document.getElementById( "input_message" );
 const g_elementListMessage = document.getElementById( "list_message" );
 
-
+const g_elementListImage = document.getElementById("audience_images");
 
 // WebSocketオブジェクト
 let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
@@ -189,6 +189,7 @@ g_socket.onmessage = ( event ) =>
         g_elementListMessage.append(messageImage);
     }
 };
+
 
 // WebSocketクローズ時の処理
 g_socket.onclose = ( event ) =>

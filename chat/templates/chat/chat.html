@@ -7,7 +7,7 @@
     <title>My Chat</title>
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
     <style type="text/css">
-      input:read-only,
+      input:read-only
       textarea:read-only {
         /* background-color: #ccc; */
       }
@@ -48,10 +48,11 @@
       }
 
       #div_chat_screen {
-        background-image: url("{% static 'image/画像名' %}");
+        
         margin: 0px 8px; /* bodyで「margin: 0」にしたのを戻す（ブラウザ領域境界に余白なしでHTML要素が表示されるのを余白ありに戻す） */
         display: none; /* 初期状態非表示 */
       }
+    
     </style>
     <link rel="stylesheet" href="{% static 'css/index.css' %}" />
   </head>
@@ -98,7 +99,7 @@
                     ボタン押下(=submit)時にページリロードが行われないように、onsubmitの設定の最後に"return false;"を追加。-->
           <ul id="list_message"></ul>
           <div class="memo-wrapper">
-            <div  class="memo" id="memo1"></div>
+            <div class="memo" id="memo1"></div>
             <div class="memo" id="memo2"></div>
             <div class="memo" id="memo3"></div>
             <div class="memo" id="memo4"></div>
@@ -107,8 +108,9 @@
             <div class="memo" id="memo7"></div>
             <div class="memo" id="memo8"></div>
             <div class="memo" id="memo9"></div>
-          </div>
 
+            
+          </div>
           <form
             class="input-form"
             action=""
@@ -130,20 +132,24 @@
             action=""
             onsubmit="onsubmitButton_sendImage(); return false;"
           >            
-          <div class="form-wrapper">
-             <input type="file" id="input_image" /><input
+            <div class="form-wrapper">
+               <input type="file" id="input_image" /><input
               type="submit"
               value="sendImage"
               class="form-button2"
-            />
-        </div>
-        </form>
-        
+              />
+          
+            </div>
           </form>
+          <div class="audience_images" id="audience_images">
+            <img id="audience1" src="../../../static/images/sittingwoman.gif"/>
+          </div>
+          
+
+          
         </div>
       </div>
     </div>
-
     <script type="text/javascript" src="{% static 'js/chat.js' %}"></script>
   </body>
 </html>

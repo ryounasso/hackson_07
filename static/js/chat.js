@@ -214,6 +214,8 @@ g_socket.onmessage = ( event ) =>
 
   }
 
+
+// WebSocketクローズ時の処理
 g_socket.onclose = ( event ) =>
 {
     // ウェブページを閉じたとき以外のWebSocketクローズは想定外

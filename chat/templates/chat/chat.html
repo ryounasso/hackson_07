@@ -6,6 +6,9 @@
     <meta charset="utf-8" />
     <title>My Chat</title>
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Stick&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="{% static 'css/index.css' %}" />
   </head>
   <body>
@@ -45,11 +48,15 @@
         <div id="div_chat_screen">
           <button onclick="onclickButton_LeaveChat()" class="button_exit">exit</button><br />
           <input type="text" id="text_roomname" readonly="readonly" /><br />
-          <span>User name:</span> 
-          <input type="text" id="text_username" readonly="readonly" /><br />
+          <div class="user-wrapper">
+              <img src="{% static 'images/user.jpeg' %}" alt="userの画像です" class="user-image">
+              <span>User:</span> 
+              <input type="text" id="text_username" readonly="readonly" /><br />
+            </div>
           <!-- エンターキーによるボタン押下を行うために、<button>ではなく<form>と<input type="submit">を使用。
                     ボタン押下(=submit)時にページリロードが行われないように、onsubmitの設定の最後に"return false;"を追加。-->
-          <ul id="list_messagea"></ul>
+
+<!--           <ul id="list_messagea"></ul> -->
           <div class="memo-wrapper">
             <div  class="memo" id="memo1"></div>
             <div class="memo" id="memo2"></div>

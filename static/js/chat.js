@@ -191,17 +191,17 @@ g_socket.onmessage = ( event ) =>
         }
         break;
       }
-      while (true) {
-        tmp = intRandom(min, max);
-        if (!randoms.includes(tmp)) {
-          let memo = eval("memo" + tmp);
-          console.log(memo);
-          randoms.push(tmp);
-          memo.innerHTML = elementLi.textContent; // リストの一番上に追加
-          c = false;
-        }
-        break;
-      }
+    //   while (true) {
+    //     tmp = intRandom(min, max);
+    //     if (!randoms.includes(tmp)) {
+    //       let memo = eval("memo" + tmp);
+    //       console.log(memo);
+    //       randoms.push(tmp);
+    //       memo.innerHTML = elementLi.textContent; // リストの一番上に追加
+    //       c = false;
+    //     }
+    //     break;
+    //   }
     }
     if (data["image"] != "null") {
       // 受信した画像をimg要素としてmessageに組み込む

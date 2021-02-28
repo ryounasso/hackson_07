@@ -22,6 +22,8 @@ const g_elementTextRoomName = document.getElementById("text_roomname");
 const g_elementInputMessage = document.getElementById("input_message");
 const g_elementListMessage = document.getElementById("list_message");
 
+const imgListElemnt = document.getElementById("image_space");
+
 // WebSocketオブジェクト
 let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
 const g_socket = new WebSocket(
@@ -76,6 +78,17 @@ function onclickButton_LeaveChat()
   // 画面の切り替え
   g_elementDivChatScreen.style.display = "none"; // チャット画面の非表示
   g_elementDivJoinScreen.style.display = "flex"; // 参加画面の表示
+
+  memo1.innerHTML = "";
+  memo2.innerHTML = "";
+  memo3.innerHTML = "";
+  memo4.innerHTML = "";
+  memo5.innerHTML = "";
+  memo6.innerHTML = "";
+  memo7.innerHTML = "";
+  memo8.innerHTML = "";
+  memo9.innerHTML = "";
+  imgListElemnt.innerHTML = "";
 }
 
 // 画像をBase64に変換
@@ -211,7 +224,8 @@ g_socket.onmessage = ( event ) =>
       // 受信した画像をimg要素としてmessageに組み込む
       const messageImage = document.createElement("img");
       messageImage.setAttribute("src", data["image"]);
-      stamp.appendChild(messageImage);
+      imgListElemnt.appendChild(messageImage);
+      c = false;
   }
   //g_elementListMessage.append( elementLi );    // リストの一番下に追加
 

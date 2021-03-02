@@ -60,7 +60,6 @@ function onsubmitButton_JoinChat() {
   if(strInputRoomName==="roo2"){
     g_elementTextRoomName.classList.add("button4")
   }
-  
 
   // サーバーに"join"を送信
   g_socket.send(
@@ -105,6 +104,15 @@ function onclickButton_LeaveChat()
   memo8.innerHTML = "";
   memo9.innerHTML = "";
   imgListElemnt.innerHTML = "";
+  if(g_elementTextRoomName.classList.contains("button1") ) {
+    g_elementTextRoomName.classList.remove("button1");
+  } else if (g_elementTextRoomName.classList.contains("button2")) {
+    g_elementTextRoomName.classList.remove("button2");
+  } else if (g_elementTextRoomName.classList.contains("button3")) {
+    g_elementTextRoomName.classList.remove("button3");
+  } else if (g_elementTextRoomName.classList.contains("button4")) {
+    g_elementTextRoomName.classList.remove("button4");
+  }
 }
 
 // 画像をBase64に変換
@@ -192,7 +200,6 @@ g_socket.onmessage = ( event ) =>
 //     let strMessage = data["datetime"] + " - [" + data["username"] + "] " + data["message"];
     // let flag = data["message"];
     countMember = data["member"];
-    console.log(countMember);
 
     // 拡散されたメッセージをメッセージリストに追加
     let elementLi = document.createElement( "p" );
@@ -222,19 +229,7 @@ g_socket.onmessage = ( event ) =>
                 break;
             }
         }
-        // break;
       }
-    //   while (true) {
-    //     tmp = intRandom(min, max);
-    //     if (!randoms.includes(tmp)) {
-    //       let memo = eval("memo" + tmp);
-    //       console.log(memo);
-    //       randoms.push(tmp);
-    //       memo.innerHTML = elementLi.textContent; // リストの一番上に追加
-    //       c = false;
-    //     }
-    //     break;
-    //   }
     }
     if (data["image"] != "null") {
       // 受信した画像をimg要素としてmessageに組み込む

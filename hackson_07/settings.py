@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,6 @@ CHANNEL_LAYERS = {
         'CONFIG': {'hosts': [('127.0.0.1', 6379)], },
     }
 }
+
+CELERY_BROKER_URL = "redis://127.0.0.1:6379/1"
+CELERY_RESULT_BACKEND = "django-db"

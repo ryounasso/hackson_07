@@ -77,7 +77,7 @@ matplotlib==3.2.2
 # mkl_random==1.1.1
 msgpack==1.0.2
 mysqlclient==2.0.1
-ncurses==6.2
+# ncurses==6.2
 # numpy==1.19.2
 # numpy-base==1.19.2
 oauthlib==3.1.0

@@ -38,7 +38,7 @@ django-allauth==0.44.0
 django-celery-results==2.0.1
 django-redis-cache==3.0.0
 django-widget-tweaks==1.4.5
-freetype==2.10.4
+# freetype==2.10.4
 future==0.18.2
 gast==0.2.2
 google-pasta==0.2.0

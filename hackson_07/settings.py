@@ -137,3 +137,15 @@ CHANNEL_LAYERS = {
 
 CELERY_BROKER_URL = "redis://127.0.0.1:6379/1"
 CELERY_RESULT_BACKEND = "django-db"
+
+CACHES = {
+    "default": {
+        "BACKEND": "redis_cache.RedisCache",
+        "LOCATION": os.environ.get('REDIS_URL'),
+    }
+}
+# BROKER_URL = os.environ.get("REDIS_URL")
+# CELERY_RESULT_BACKEND = os.environ.get("REDIS_URL")
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']

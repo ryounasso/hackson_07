@@ -15,7 +15,7 @@ billiard==3.6.3.0
 # blas==1.0
 brotlipy==0.7.0
 # c-ares==1.17.1
-ca-certificates==2021.1.19
+# ca-certificates==2021.1.19
 celery==5.0.5
 certifi==2020.12.5
 cffi==1.14.5

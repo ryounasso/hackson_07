@@ -255,5 +255,3 @@ g_socket.onclose = ( event ) =>
     console.error( "Unexpected : Chat socket closed." );
 };
 
-// var img = document.getElementById('image_place');
-// img.src = "{% static 'img/sittingwoman.png' %}"

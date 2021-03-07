@@ -14,6 +14,7 @@ from pathlib import Path
 from socket import gethostname
 from os import environ
 import os
+from django.utils.six.moves.urllib import parse as urlparse
 
 HOSTNAME = gethostname()
 

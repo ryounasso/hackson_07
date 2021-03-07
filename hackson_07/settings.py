@@ -11,15 +11,15 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from .local_settings import
+from socket import gethostname
 import environ
 import os
 
-# BASE_DIR = environ.Path(__file__) - 1
+HOSTNAME = gethostname()
 
 if 'local' in HOSTNAME:
-    import settings_local
-    SECRET_KEY = settings_local.SECRET_KEY
+    import local_settings
+    SECRET_KEY = local_settings.SECRET_KEY
 else:
     SECRET_KEY = environ['SECRET_KEY']
 

@@ -11,22 +11,19 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-# from .local_settings import
+from .local_settings import
 import environ
 import os
 
-BASE_DIR = environ.Path(__file__) - 1
+# BASE_DIR = environ.Path(__file__) - 1
 
-env = environ.Env()
-READ_ENV_FILE = env.bool('DJANGO_READ_ENV_FILE', default=False)
-if READ_ENV_FILE:
-    env_file = str(BASE_DIR.path('.env'))
-    env.read_env(env_file)
+if 'local' in HOSTNAME:
+    import settings_local
+    SECRET_KEY = settings_local.SECRET_KEY
+else:
+    SECRET_KEY = environ['SECRET_KEY']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-SECRET_KEY = env(DJANGO_SECRET_KEY)
 
 
 # Quick-start development settings - unsuitable for production

@@ -27,10 +27,10 @@ const imgListElemnt = document.getElementById("image_space");
 // WebSocketオブジェクト
 let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
 const g_socket = new WebSocket(
-  ws_scheme + "://" + window.location.host + "/ws/chat/"
+  ws_scheme + "://" + window.location.host + "/wss/chat/"
 );
 const g_socket_image = new WebSocket(
-  ws_scheme + "://" + window.location.host + "/ws/chat/"
+  ws_scheme + "://" + window.location.host + "/wss/chat/"
 );
 
 // 「Join」ボタンを押すと呼ばれる関数

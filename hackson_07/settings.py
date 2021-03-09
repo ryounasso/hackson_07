@@ -33,7 +33,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['guarded-eyrie-48747.herokuapp.com']
+ALLOWED_HOSTS = ['guarded-eyrie-48747.herokuapp.com', '127.0.0.1:8000']
 
 
 # Application definition
@@ -153,6 +153,9 @@ CACHES = {
     "default": {
         "BACKEND": "redis_cache.RedisCache",
         "LOCATION": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        }
     }
 }
 # BROKER_URL = os.environ.get("REDIS_URL")

@@ -19,8 +19,8 @@ from six.moves.urllib import parse
 HOSTNAME = gethostname()
 
 if 'local' in HOSTNAME:
-    import local_settings
-    SECRET_KEY = local_settings.SECRET_KEY
+    from .local_settings import SECRET_KEY
+    SECRET_KEY = SECRET_KEY
 else:
     SECRET_KEY = environ['SECRET_KEY']
 
@@ -33,7 +33,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['guarded-eyrie-48747.herokuapp.com', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['guarded-eyrie-48747.herokuapp.com', '127.0.0.1']
 
 
 # Application definition

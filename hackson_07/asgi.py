@@ -12,11 +12,13 @@ from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter
 import os
 import chat.routing
+import django
 
 from django.core.asgi import get_asgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hackson_07.settings')
 
+django.setup()
 
 #application = get_asgi_application()
 django_asgi_app = get_asgi_application()

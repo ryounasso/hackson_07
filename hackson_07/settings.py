@@ -163,3 +163,5 @@ CACHES = {
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
+
+ASGI_APPLICATION = 'hackson_07.routing.application'

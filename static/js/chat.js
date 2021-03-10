@@ -28,11 +28,12 @@ const imgListElemnt = document.getElementById("image_space");
 let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
 const g_socket = new WebSocket(
   // ws_scheme + "://" + window.location.host + "/wss/chat/"
-  ws_scheme + "://guarded-eyrie-48747.herokuapp.com/" + "ws/chat/"
+  ws_scheme + "://" + window.location.host + "/chat/"
+  // ws_scheme + "://guarded-eyrie-48747.herokuapp.com/" + "ws/chat/"
 );
 const g_socket_image = new WebSocket(
-  // ws_scheme + "://" + window.location.host + "/wss/chat/"
-  ws_scheme + "://guarded-eyrie-48747.herokuapp.com/" + "ws/chat/"
+  ws_scheme + "://" + window.location.host + "/chat/"
+  // ws_scheme + "://guarded-eyrie-48747.herokuapp.com/" + "ws/chat/"
 );
 
 // 「Join」ボタンを押すと呼ばれる関数

@@ -1,5 +1,3 @@
-import ReconnectingWebSocket from 'reconnecting-websocket'
-
 const g_elementDivJoinScreen = document.getElementById("div_join_screen");
 const g_elementDivChatScreen = document.getElementById("div_chat_screen");
 const g_elementInputUserName = document.getElementById("input_username");
@@ -28,12 +26,12 @@ const imgListElemnt = document.getElementById("image_space");
 
 // WebSocketオブジェクト
 let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-const g_socket = new ReconnectingWebSocket(
+const g_socket = new WebSocket(
   // ws_scheme + "://" + window.location.host + "/wss/chat/"
   ws_scheme + "://" + window.location.host + "/ws/chat/"
   // ws_scheme + "://guarded-eyrie-48747.herokuapp.com/" + "ws/chat/"
 );
-const g_socket_image = new ReconnectingWebSocket(
+const g_socket_image = new WebSocket(
   ws_scheme + "://" + window.location.host + "/ws/chat/"
   // ws_scheme + "://guarded-eyrie-48747.herokuapp.com/" + "ws/chat/"
 );

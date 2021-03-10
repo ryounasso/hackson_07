@@ -26,13 +26,13 @@ const imgListElemnt = document.getElementById("image_space");
 
 // WebSocketオブジェクト
 let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-const g_socket = new WebSocket(
+const g_socket = new ReconnectingWebSocket(
   // ws_scheme + "://" + window.location.host + "/wss/chat/"
-  ws_scheme + "://" + window.location.host + "/wss/chat/"
+  ws_scheme + "://" + window.location.host + "/ws/chat/"
   // ws_scheme + "://guarded-eyrie-48747.herokuapp.com/" + "ws/chat/"
 );
-const g_socket_image = new WebSocket(
-  ws_scheme + "://" + window.location.host + "/wss/chat/"
+const g_socket_image = new ReconnectingWebSocket(
+  ws_scheme + "://" + window.location.host + "/ws/chat/"
   // ws_scheme + "://guarded-eyrie-48747.herokuapp.com/" + "ws/chat/"
 );
 

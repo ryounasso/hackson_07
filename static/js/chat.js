@@ -1,3 +1,5 @@
+import ReconnectingWebSocket from 'reconnecting-websocket'
+
 const g_elementDivJoinScreen = document.getElementById("div_join_screen");
 const g_elementDivChatScreen = document.getElementById("div_chat_screen");
 const g_elementInputUserName = document.getElementById("input_username");

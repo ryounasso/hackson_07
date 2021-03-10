@@ -33,22 +33,30 @@ https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/
 # })
 
 
-from channels.routing import URLRouter
-from channels.auth import AuthMiddlewareStack
-from channels.routing import ProtocolTypeRouter
+# from channels.routing import URLRouter
+# from channels.auth import AuthMiddlewareStack
+# from channels.routing import ProtocolTypeRouter
+# import os
+# import chat.routing
+
+# from django.core.asgi import get_asgi_application
+
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hackson_07.settings')
+
+
+# #application = get_asgi_application()
+# django_asgi_app = get_asgi_application()
+
+
+# application = ProtocolTypeRouter({
+#     'http': django_asgi_app,
+#     'websocket': AuthMiddlewareStack(URLRouter(chat.routing.websocket_urlpatterns)),
+# })
+
 import os
-import chat.routing
+import django
+from channels.routing import get_default_application
 
-from django.core.asgi import get_asgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hackson_07.settings')
-
-
-#application = get_asgi_application()
-django_asgi_app = get_asgi_application()
-
-
-application = ProtocolTypeRouter({
-    'http': django_asgi_app,
-    'websocket': AuthMiddlewareStack(URLRouter(chat.routing.websocket_urlpatterns)),
-})
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+django.setup()
+application = get_default_application()

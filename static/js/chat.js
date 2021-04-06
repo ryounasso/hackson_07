@@ -198,10 +198,7 @@ g_socket.onmessage = ( event ) =>
     if(data["username"] != "*system*"){
         strMessage = " user " + data["username"] + '<br>' + data["message"];
     }
-    // let strMessage = " user " + data["username"] + data["message"];
     let flag = data["message"];
-//     let strMessage = data["datetime"] + " - [" + data["username"] + "] " + data["message"];
-    // let flag = data["message"];
     countMember = data["member"];
 
     // 拡散されたメッセージをメッセージリストに追加
